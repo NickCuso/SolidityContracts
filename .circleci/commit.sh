@@ -2,7 +2,7 @@
 # Based on https://github.com/eldarlabs/ghpages-deploy-script/blob/master/scripts/deploy-ghpages.sh
 
 # abort the script if there is a non-zero error
-set -e
+#set -e
 
 remote=$(git config remote.origin.url)
 
