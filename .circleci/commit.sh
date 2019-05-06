@@ -19,15 +19,15 @@ if ! git diff-index --quiet HEAD --; then
   git push --force --quiet origin $CIRCLE_BRANCH > /dev/null 2>&1
 fi
 
-cd ~/repo/library/artifacts
-git pull --rebase --progress "origin" +refs/heads/artifacts
-cd ~/repo
+# cd ~/repo/library/artifacts
+# git pull --rebase --progress "origin" +refs/heads/artifacts
+# cd ~/repo
 
-if ! git diff-index --quiet HEAD --; then
-  # stage any changes and new files
-  git add -A
-  # now commit
-  git commit -m "artifacts-update"
-  # and push, but send any output to /dev/null to hide anything sensitive
-  git push --force --quiet origin $CIRCLE_BRANCH > /dev/null 2>&1
-fi
+# if ! git diff-index --quiet HEAD --; then
+#   # stage any changes and new files
+#   git add -A
+#   # now commit
+#   git commit -m "artifacts-update"
+#   # and push, but send any output to /dev/null to hide anything sensitive
+#   git push --force --quiet origin $CIRCLE_BRANCH > /dev/null 2>&1
+# fi
