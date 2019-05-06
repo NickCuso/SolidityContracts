@@ -9,6 +9,7 @@ contract("Trc20Extension", accounts => {
     contract = await Trc20Extension.new();
     for (let iToken = 0; iToken < 20; iToken++) {
       const token = await TestTrc20.new();
+      console.log(token);
       tokens.push(token.address);
       await token.mint(accounts[0], 5 + iToken);
     }
