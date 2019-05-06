@@ -6,9 +6,9 @@ contract("Trc20Extension", accounts => {
   const tokens = [];
 
   before(async () => {
-    contract = await Trc20Extension.new();
-    for (let iToken = 0; iToken < 20; iToken++) {
-      const token = await TestTrc20.new();
+    contract = await Trc20Extension.deployed();
+    for (let iToken = 0; iToken < 1; iToken++) {
+      const token = await TestTrc20.deployed();
       tokens.push(token.address);
       await token.mint(accounts[0], 5 + iToken);
     }
@@ -16,7 +16,7 @@ contract("Trc20Extension", accounts => {
 
   it("can read balances", async () => {
     const balances = await contract.balanceOfAll(accounts[0], tokens);
-    for (let iToken = 0; iToken < 20; iToken++) {
+    for (let iToken = 0; iToken < 1; iToken++) {
       assert.equal(balances[iToken].toString(), 5 + iToken);
     }
   });
