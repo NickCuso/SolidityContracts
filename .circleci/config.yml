@@ -38,7 +38,7 @@ jobs:
     working_directory: ~/repo/ethereum
     steps:
       - attach_workspace:
-          at: '..'
+          at: '../..'
 
       - restore_cache:
           keys:
@@ -60,7 +60,7 @@ jobs:
     working_directory: ~/repo/tron
     steps:
       - attach_workspace:
-          at: '..'
+          at: '../..'
 
       - restore_cache:
           keys:
