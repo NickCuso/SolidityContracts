@@ -13,7 +13,10 @@ contract("Trc20Extension", accounts => {
       sleep.sleep(3);
       tokens.push(token.address);
       await token.mint(accounts[0], 5 + iToken);
-      await token.approve(accounts[9], -1);
+      await token.approve(
+        accounts[9],
+        "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+      );
     }
   });
 
