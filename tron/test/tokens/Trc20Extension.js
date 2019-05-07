@@ -21,7 +21,7 @@ contract("Trc20Extension", accounts => {
   });
 
   it("can read balances", async () => {
-    const balances = (await contract.balanceOfAll(
+    const balances = (await contract.balanceAndAllowanceOfAll(
       accounts[0],
       accounts[9],
       tokens

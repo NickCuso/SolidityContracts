@@ -7,7 +7,7 @@ import "../openzeppelin/token/TRC20/ITRC20.sol";
  */
 contract Trc20Extension
 {
-  function balanceOfAll(
+  function balanceAndAllowanceOfAll(
     address user,
     address spender,
     address[] tokens

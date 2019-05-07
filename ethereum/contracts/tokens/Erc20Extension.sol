@@ -4,7 +4,7 @@ import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
 
 contract Erc20Extension
 {
-  function balanceOfAll(
+  function balanceAndAllowanceOfAll(
     address user,
     address spender,
     address[] calldata tokens
