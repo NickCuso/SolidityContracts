@@ -25,7 +25,7 @@ contract("Trc20Extension", accounts => {
       accounts[0],
       accounts[9],
       tokens
-    )).balances;
+    )).balanceAndAllowancePerToken;
     for (let iToken = 0; iToken < 1; iToken++) {
       assert.equal(balances[iToken * 2].toString(), 5 + iToken);
       assert.equal(
