@@ -19,7 +19,6 @@ contract("Trc20Extension", accounts => {
   it("can read balances", async () => {
     const balances = (await contract.balanceOfAll(accounts[0], tokens))
       .balances;
-    console.log(balances);
     for (let iToken = 0; iToken < 1; iToken++) {
       assert.equal(balances[iToken].toString(), 5 + iToken);
     }
