@@ -8,8 +8,19 @@ jobs:
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
+      
+      # build library
+      - restore_cache:
+          keys:
+            - v1-{{ checksum "library/package.json" }}
+      - run: cd library && npm i --production
+      - save_cache:
+          paths:
+            - library/node_modules
+            - library/package-lock.json
+          key: v1-{{ checksum "library/package.json" }}
 
-      # save checkout
+      # save checkout and library
       - persist_to_workspace:
           root: '..'
           paths:
@@ -29,17 +40,6 @@ jobs:
       - run: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - run: npm run lint # includes --fix
       - run: bash .circleci/commit.sh
-      
-      # build library
-      - restore_cache:
-          keys:
-            - v1-{{ checksum "library/package.json" }}
-      - run: cd library && npm i --production
-      - save_cache:
-          paths:
-            - library/node_modules
-            - library/package-lock.json
-          key: v1-{{ checksum "library/package.json" }}
 
   ethereum:
     docker:
