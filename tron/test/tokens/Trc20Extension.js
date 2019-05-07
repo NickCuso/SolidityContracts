@@ -1,5 +1,6 @@
 const Trc20Extension = artifacts.require("Trc20Extension");
 const TestTrc20 = artifacts.require("TestTrc20");
+const sleep = require("sleep");
 
 contract("Trc20Extension", accounts => {
   let contract;
@@ -9,7 +10,7 @@ contract("Trc20Extension", accounts => {
     contract = await Trc20Extension.deployed();
     for (let iToken = 0; iToken < 1; iToken++) {
       const token = await TestTrc20.deployed();
-      console.log(token);
+      sleep.sleep(3);
       tokens.push(token.address);
       await token.mint(accounts[0], 5 + iToken);
     }
