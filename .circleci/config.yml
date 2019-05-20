@@ -33,6 +33,28 @@ jobs:
       # build library
       - restore_cache:
           keys:
+            - v1-{{ checksum "ethereum/package.json" }}
+      - run: cd ethereum && npm i --production
+      - save_cache:
+          paths:
+            - ethereum/node_modules
+            - ethereum/package-lock.json
+          key: v1-{{ checksum "ethereum/package.json" }}
+      - run: cd ethereum && npm run compile
+      
+      - restore_cache:
+          keys:
+            - v1-{{ checksum "tron/package.json" }}
+      - run: cd tron && npm i --production
+      - save_cache:
+          paths:
+            - tron/node_modules
+            - tron/package-lock.json
+          key: v1-{{ checksum "tron/package.json" }}
+      - run: cd tron && npm run compile
+
+      - restore_cache:
+          keys:
             - v1-{{ checksum "library/package.json" }}
       - run: cd library && npm i --production && npm run deploy
       - save_cache:
@@ -46,6 +68,8 @@ jobs:
           root: '..'
           paths:
             - repo/artifacts
+            - repo/tron/build
+            - repo/ethereum/build
 
   ethereum:
     docker:
@@ -62,14 +86,6 @@ jobs:
           keys:
             - v1-{{ checksum "package.json" }}
 
-      - run: npm i --production
-      - save_cache:
-          paths:
-            - ethereum/node_modules
-            - ethereum/package-lock.json
-          key: v1-{{ checksum "package.json" }}
-
-      - run: npm run compile
       - run: npm run test
 
   tron:
@@ -93,14 +109,6 @@ jobs:
           keys:
             - v1-{{ checksum "package.json" }}
 
-      - run: npm i --production
-      - save_cache:
-          paths:
-            - tron/node_modules
-            - tron/package-lock.json
-          key: v1-{{ checksum "package.json" }}
-
-      - run: npm run compile
       - run: npm run test
 
   push:
