@@ -9,7 +9,7 @@ contract("Erc20Ext", accounts => {
   let contract;
   const tokens = [];
 
-  beforeEach(async () => {
+  before(async () => {
     await deploy.deploy(true, accounts[0], [web3.currentProvider]);
     contract = await Erc20Ext.new();
     library = new Library(true, web3.currentProvider, contract.address);
