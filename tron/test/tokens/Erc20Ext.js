@@ -2,6 +2,7 @@ const Erc20Ext = artifacts.require("Erc20Ext");
 const TestTrc20 = artifacts.require("TestTrc20");
 const deploy = require("../../../library/src/deploy");
 const Library = require("../../../library/src/tokens/Erc20Ext");
+const TestErc20Ext = require("../../../library/test/tokens/Erc20Ext");
 const sleep = require("sleep");
 
 contract("Erc20Ext", accounts => {
@@ -25,18 +26,7 @@ contract("Erc20Ext", accounts => {
     }
   });
 
-  it("can read balances", async () => {
-    const balances = await library.balanceAndAllowanceOfAll(
-      accounts[0],
-      accounts[9],
-      tokens
-    );
-    for (let iToken = 0; iToken < 1; iToken++) {
-      assert.equal(balances[iToken * 2].toString(), 5 + iToken);
-      assert.equal(
-        balances[iToken * 2 + 1].toString(),
-        "115792089237316195423570985008687907853269984665640564039457584007913129639935"
-      );
-    }
+  it("should function", () => {
+    TestErc20Ext(library, accounts, tokens);
   });
 });
