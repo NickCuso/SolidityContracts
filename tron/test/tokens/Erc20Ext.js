@@ -26,7 +26,7 @@ contract("Erc20Ext", accounts => {
     }
   });
 
-  it("should function", () => {
-    return Test.Erc20Ext(library, accounts, tokens);
+  describe("test", () => {
+    Test.Erc20Ext(accounts, tokens);
   });
 });
