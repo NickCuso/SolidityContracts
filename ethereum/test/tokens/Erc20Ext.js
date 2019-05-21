@@ -5,14 +5,13 @@ const Library = require("../../../library/src/tokens/Erc20Ext");
 const Test = require("../../../library/test/tokens/Erc20Ext");
 
 contract("Erc20Ext", accounts => {
-  let library;
   let contract;
   const tokens = [];
 
   before(async () => {
     await deploy.deploy(true, accounts[0], [web3.currentProvider]);
     contract = await Erc20Ext.new();
-    library = new Library(true, web3.currentProvider, contract.address);
+    Test.library = new Library(true, web3.currentProvider, contract.address);
     for (let iToken = 0; iToken < 20; iToken++) {
       const token = await TestErc20.new();
       tokens.push(token.address);
@@ -21,7 +20,7 @@ contract("Erc20Ext", accounts => {
     }
   });
 
-  it("test", () => {
-    return Test.Erc20Ext(library, accounts, tokens);
+  describe("test", () => {
+    Test.Erc20Ext(accounts, tokens);
   });
 });

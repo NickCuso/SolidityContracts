@@ -13,7 +13,7 @@ contract("Erc20Ext", accounts => {
   before(async () => {
     //await deploy.deploy(false, accounts[0], [tronWeb.currentProvider]);
     contract = await Erc20Ext.deployed();
-    library = new Library(false, tronWeb, contract.address);
+    Test.library = new Library(false, tronWeb, contract.address);
     for (let iToken = 0; iToken < 1; iToken++) {
       const token = await TestTrc20.deployed();
       sleep.sleep(3);
