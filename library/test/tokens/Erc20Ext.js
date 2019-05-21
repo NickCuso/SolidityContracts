@@ -1,10 +1,6 @@
-module.exports = function(library, accounts, tokens) {
+exports.Erc20Ext = function(library, accounts, tokens) {
   describe("Erc20Ext", () => {
     it("can read balances", async () => {
-      console.log(accounts[0]);
-      console.log(accounts[9]);
-      console.log(tokens);
-      console.log(library);
       const balances = await library.balanceAndAllowanceOfAll(
         accounts[0],
         accounts[9],

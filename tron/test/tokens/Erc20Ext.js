@@ -2,12 +2,12 @@ const Erc20Ext = artifacts.require("Erc20Ext");
 const TestTrc20 = artifacts.require("TestTrc20");
 const deploy = require("../../../library/src/deploy");
 const Library = require("../../../library/src/tokens/Erc20Ext");
-const TestErc20Ext = require("../../../library/test/tokens/Erc20Ext");
+const Test = require("../../../library/test/tokens/Erc20Ext");
 const sleep = require("sleep");
 
 contract("Erc20Ext", accounts => {
-  let contract;
   let library;
+  let contract;
   const tokens = [];
 
   before(async () => {
@@ -27,6 +27,6 @@ contract("Erc20Ext", accounts => {
   });
 
   it("should function", () => {
-    TestErc20Ext(library, accounts, tokens);
+    return Test.Erc20Ext(library, accounts, tokens);
   });
 });
