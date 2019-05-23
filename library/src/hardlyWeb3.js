@@ -1,3 +1,4 @@
+const ethers = require("ethers");
 const Web3 = require("web3");
 const BigNumber = require("bignumber.js");
 
@@ -17,6 +18,7 @@ class HardlyWeb3 {
       this.web3 = new Web3(currentProvider);
       this.web3.defaultGasPrice = 4000000000;
     } else {
+      console.log(currentProvider);
       this.tronWeb = currentProvider;
     }
   }
@@ -93,6 +95,14 @@ class HardlyWeb3 {
     return contract;
   }
 
+  async getNetworkId() {
+    if (this.isEth) {
+      return this.web3.eth.net.getId();
+    } else {
+      return this.tronWeb.solidityNode.host;
+    }
+  }
+
   /*********************************************************************************
    * Helpers (non-network requests)
    */
@@ -113,6 +123,10 @@ class HardlyWeb3 {
   toWei(value, unit = "ether") {
     if (typeof value === "number") value = value.toString();
     return this.web3.utils.toWei(value, unit);
+  }
+
+  keccak256(message) {
+    return ethers.utils.keccak256(message);
   }
 
   defaultAccount() {

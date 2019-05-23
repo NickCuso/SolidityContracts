@@ -15,12 +15,20 @@ module.exports.deploy = async (
     Networks.rinkeby.provider
   ]
 ) => {
-  const ethgc = await deployContract(isEth, networkNodes, "Ethgc", undefined, {
-    from: fromAccount
-  });
-  await deployContract(isEth, networkNodes, "EthgcExt", ethgc, {
-    from: fromAccount
-  });
+  if (isEth) {
+    const ethgc = await deployContract(
+      isEth,
+      networkNodes,
+      "Ethgc",
+      undefined,
+      {
+        from: fromAccount
+      }
+    );
+    await deployContract(isEth, networkNodes, "EthgcExt", ethgc, {
+      from: fromAccount
+    });
+  }
   await deployContract(isEth, networkNodes, "Erc20Ext", undefined, {
     from: fromAccount
   });
@@ -36,7 +44,9 @@ async function deployContract(
   const fileBuildJson = `${__dirname}/../../${
     isEth ? "ethereum" : "tron"
   }/build/contracts/${contractName}.json`;
-  const dirArtifacts = `${__dirname}/../../artifacts/`;
+  const dirArtifacts = `${__dirname}/../../artifacts/${
+    isEth ? "ethereum" : "tron"
+  }/`;
   const fileArtifactsJson = `${dirArtifacts}${contractName}.json`;
   let buildJson = JSON.parse(fs.readFileSync(fileBuildJson).toString());
 
@@ -52,7 +62,7 @@ async function deployContract(
     artifactsJson = {};
   }
   artifactsJson.abi = buildJson.abi;
-  artifactsJson.bytecodeHash = hardlyWeb3.web3.utils.keccak256(
+  artifactsJson.bytecodeHash = hardlyWeb3.keccak256(
     buildJson.deployedBytecode.substring(
       0,
       buildJson.deployedBytecode.length - 64
@@ -65,7 +75,7 @@ async function deployContract(
         networkWeb3.switchAccount(txOptions.from);
       }
       let networkBytecodeHash;
-      const networkId = await networkWeb3.web3.eth.net.getId();
+      const networkId = await networkWeb3.getNetworkId();
       try {
         if (artifactsJson[networkId]) {
           const networkBytecode = await networkWeb3.web3.eth.getCode(

@@ -10,9 +10,13 @@ class EthGcNetwork {
   async _init() {
     if (this.contract) return;
     const id = await this.hardlyWeb3.web3.eth.net.getId();
-    const file = require(`${__dirname}/../../../artifacts/Ethgc.json`);
+    const file = require(`${__dirname}/../../../artifacts/${
+      this.hardlyWeb3.isEth ? "ethereum" : "tron"
+    }/Ethgc.json`);
     this.contract = new this.hardlyWeb3.web3.eth.Contract(file.abi, file[id]);
-    const extFile = require(`${__dirname}/../../../artifacts/EthgcExt.json`);
+    const extFile = require(`${__dirname}/../../../artifacts/${
+      this.hardlyWeb3.isEth ? "ethereum" : "tron"
+    }/EthgcExt.json`);
     this.extContract = new this.hardlyWeb3.web3.eth.Contract(
       extFile.abi,
       extFile[id]
