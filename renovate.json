@@ -6,11 +6,5 @@
     ":pinVersions"
   ],
   "timezone": "America/Los_Angeles",
-  "schedule": ["before 3am"],
-  "packageRules": [
-    {
-      "packageNames": ["unlock-js"],
-      "schedule": ["at any time"]
-    }
-  ]
+  "schedule": ["at any time"]
 }
