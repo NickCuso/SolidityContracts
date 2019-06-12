@@ -2,12 +2,12 @@
   {
     "extends": [
       "config:base",
-      "rangeStrategy": "pin",
-      "updateLockFiles": "true",
-      "schedule": "monthly",
       ":prHourlyLimitNone",
       ":prConcurrentLimitNone"
     ],
+    "rangeStrategy": "pin",
+    "updateLockFiles": "true",
+    "schedule": "monthly",
     "packageRules": [
       {
         "packageNames": ["unlock-js"],
