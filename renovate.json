@@ -5,9 +5,11 @@
     ":prConcurrentLimitNone",
     ":pinVersions"
   ],
+  "timezone": "America/Los_Angeles",
+  "schedule": ["before 3am"],
   "packageRules": [
     {
-      "packagePatterns": ["*"],
+      "packageNames": ["unlock-js"],
       "schedule": ["at any time"]
     }
   ]
