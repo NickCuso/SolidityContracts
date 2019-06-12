@@ -1,20 +1,18 @@
 {
-  {
-    "extends": [
-      "config:base",
-      ":prHourlyLimitNone",
-      ":prConcurrentLimitNone",
-      ":pinVersions"
-    ],
-    "packageRules": [
-      {
-        "packagePatterns": ["*"],
-        "schedule": ["monthly"],
-      }
-      {
-        "packageNames": ["unlock-js"],
-        "schedule": ["at any time"]
-      }
-    ]
-  }
+  "extends": [
+    "config:base",
+    ":prHourlyLimitNone",
+    ":prConcurrentLimitNone",
+    ":pinVersions"
+  ],
+  "packageRules": [
+    {
+      "packagePatterns": ["*"],
+      "schedule": ["monthly"],
+    }
+    {
+      "packageNames": ["unlock-js"],
+      "schedule": ["at any time"]
+    }
+  ]
 }
