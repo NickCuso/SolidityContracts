@@ -8,10 +8,6 @@
   "packageRules": [
     {
       "packagePatterns": ["*"],
-      "schedule": ["monthly"]
-    },
-    {
-      "packageNames": ["unlock-js"],
       "schedule": ["at any time"]
     }
   ]
