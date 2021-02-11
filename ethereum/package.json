@@ -15,6 +15,6 @@
     "truffle": "5.0.37"
   },
   "devDependencies": {
-    "truffle-security": "1.5.5"
+    "truffle-security": "1.7.3"
   }
 }
