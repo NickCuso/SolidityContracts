@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "bignumber.js": "9.0.0",
-    "openzeppelin-solidity": "2.3.0",
+    "openzeppelin-solidity": "3.4.1",
     "truffle": "5.0.37"
   },
   "devDependencies": {
