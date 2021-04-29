@@ -1,0 +1,11 @@
+version: 2
+updates:
+- package-ecosystem: gitsubmodule
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "07:00"
+    timezone: PST8PDT
+  open-pull-requests-limit: 99
+  labels:
+  - auto-merge
